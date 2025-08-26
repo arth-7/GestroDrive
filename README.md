@@ -1,3 +1,4 @@
+![GestroDrive Car](Docs/Images/Image.jpg)
 # GestroDrive 🚗✋
 
 Gesture-Controlled Robotic Car System built with **ESP32**, **ESP32-CAM**, and **MPU6050**.  
