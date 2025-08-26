@@ -89,7 +89,7 @@ GestroDrive/
 ---
 
 ## 📖 Documentation
-- **[Interim Report (PDF)](Docs/Report.pdf)** – complete technical report  
+- **[Report (PDF)](Docs/Report.pdf)** – complete technical report  
 - **[What I Learned Summary](Docs/What-I-Learned-Summary.md)** – technical learning outcomes  
 - **[Setup Notes](Docs/Setup-Notes.md)** – hardware/software setup guide  
 
