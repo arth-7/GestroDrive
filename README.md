@@ -96,7 +96,7 @@ GestroDrive/
 
 ## 👥 Team
 - [Arth Raval](https://github.com/arth-7)  
-- Vansh Patel  
+- [Vansh Dave](https://github.com/vdave18)
 
 ---
 
