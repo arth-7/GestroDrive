@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GestroDrive Dashboard</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    background: #ffffff;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  header {
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+  }
+  .main {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 1200px;
+    gap: 30px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    flex: 1;
+  }
+  #camera {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+  }
+  #status-bar {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #444;
+  }
+  #mode-indicator {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #222;
+  }
+  .btn {
+    padding: 15px 25px;
+    margin: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    background: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: 0.2s;
+  }
+  .btn:hover { background: #005a9e; }
+  .btn:active { transform: scale(0.97); }
+  .btn:disabled { background: #ccc; cursor: not-allowed; }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .controls div { display: flex; justify-content: center; }
+  .switch-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+  }
+  .switch input { display:none; }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 30px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 24px; width: 24px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+  input:checked + .slider { background-color: #28a745; }
+  input:checked + .slider:before { transform: translateX(30px); }
+</style>
+</head>
+<body>
+  <header>GestroDrive Dashboard</header>
+
+  <div class="main">
+    <div class="card">
+      <img id="camera" src="http://cam.local/stream" alt="Camera Stream">
+    </div>
+
+    <div class="card controls">
+      <div class="switch-box">
+        <span>Gesture</span>
+        <label class="switch">
+          <input type="checkbox" id="modeToggle" onchange="toggleModeCheckbox()">
+          <span class="slider"></span>
+        </label>
+        <span>Web</span>
+      </div>
+
+      <div>
+        <button class="btn" id="btnF" onmousedown="startCommand('F')" onmouseup="stopCommand()">Forward</button>
+      </div>
+      <div>
+        <button class="btn" id="btnL" onmousedown="startCommand('L')" onmouseup="stopCommand()">Left</button>
+        <button class="btn" id="btnS" onclick="sendCommand('S')">Stop</button>
+        <button class="btn" id="btnR" onmousedown="startCommand('R')" onmouseup="stopCommand()">Right</button>
+      </div>
+      <div>
+        <button class="btn" id="btnB" onmousedown="startCommand('B')" onmouseup="stopCommand()">Backward</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const CAR_URL = "http://cam.local";
+  let commandInterval = null;
+  let lastWebMode = false;
+
+  async function fetchStatus() {
+    try {
+      const res = await fetch(${CAR_URL}/status);
+      const data = await res.json();
+
+      document.getElementById('status-bar').textContent =
+        Distance: ${data.distance} cm | Buzzer: ${data.buzzer} | LED: ${data.led};
+
+      lastWebMode = data.web;
+      document.getElementById('mode-indicator').textContent = Mode: ${lastWebMode ? "Web" : "Gesture"};
+      document.getElementById('modeToggle').checked = lastWebMode;
+
+      // Disable nav in gesture mode
+      ["btnF","btnB","btnL","btnR","btnS"].forEach(id=>{
+        document.getElementById(id).disabled = !lastWebMode;
+      });
+    } catch (e) {
+      document.getElementById('status-bar').textContent = 'Status: Offline';
+    }
+  }
+
+  function sendCommand(cmd) {
+    fetch(${CAR_URL}/cmd?c=${cmd}).catch(()=>{});
+    setTimeout(() => fetch(${CAR_URL}/cmd?c=${cmd}).catch(()=>{}), 50);
+  }
+
+  async function toggleModeCheckbox() {
+    for (let i = 0; i < 3; i++) {
+      try {
+        await fetch(${CAR_URL}/cmd?c=T);
+        break;
+      } catch(e) {
+        await new Promise(r => setTimeout(r, 100));
+      }
+    }
+  }
+
+  function startCommand(cmd) {
+    sendCommand(cmd);
+    commandInterval = setInterval(() => sendCommand(cmd), 200);
+  }
+
+  function stopCommand() {
+    clearInterval(commandInterval);
+    commandInterval = null;
+    sendCommand('S');
+  }
+
+  setInterval(fetchStatus, 1000);
+</script>
+</body>
+</html>
