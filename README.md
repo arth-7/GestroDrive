@@ -37,7 +37,7 @@ GestroDrive/
 │   └── README.md
 │
 ├── Docs/                      # Documentation
-│   ├── Interim Report.pdf
+│   ├── Report.pdf
 │   ├── What-I-Learned-Summary.md
 │   ├── Setup-Notes.md
 │   └── Images/                # Project photos
