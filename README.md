@@ -18,13 +18,16 @@ The system integrates:
 
 ## 🗂️ Repository Structure
 GestroDrive/
+│
 ├── HandUnit/ # PlatformIO project for the hand controller
 │ ├── platformio.ini
-│ └── src/main.cpp
+│ └── src/
+│ └── main.cpp
 │
 ├── CarUnit/ # PlatformIO project for the car (ESP32-CAM)
 │ ├── platformio.ini
-│ └── src/main.cpp
+│ └── src/
+│ └── main.cpp
 │
 ├── Dashboard/ # Web dashboard for monitoring and control
 │ ├── index.html
