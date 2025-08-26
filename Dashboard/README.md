@@ -1,3 +1,2 @@
-# Hand Unit Code
-Arduino sketch for the ESP32 hand controller with MPU6050 and OLED. Sends gestures via ESP-NOW to car.
-
+# Dashboard
+HTML/JS web dashboard to control the car and view live ESP32-CAM stream.
