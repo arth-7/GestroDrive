@@ -1,4 +1,4 @@
-# What I Learned from the GestroDrive Project 🚗✋
+# What I Learned from the GestroDrive Project 
 
 ## Microcontrollers
 - **ESP32-WROOM-32U (Hand Unit)**  
