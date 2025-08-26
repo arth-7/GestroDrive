@@ -39,7 +39,13 @@ GestroDrive/
 ├── Docs/                      # Documentation
 │   ├── Interim Report.pdf
 │   ├── What-I-Learned-Summary.md
-│   └── Setup-Notes.md
+│   ├── Setup-Notes.md
+│   └── Images/                # Project photos
+│       ├── Car.jpg
+│       ├── CarV2.jpg
+│       ├── HandUnit.jpg
+│       ├── HandUnitV2.jpg
+│       └── Image.jpg
 │
 └── README.md                  # This file
 ```
