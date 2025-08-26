@@ -16,30 +16,32 @@ The system integrates:
 
 ---
 
-## 🗂️ Repository Structure
+## 📂 Repository Structure
+
+```text
 GestroDrive/
 │
-├── HandUnit/ # PlatformIO project for the hand controller
-│ ├── platformio.ini
-│ └── src/
-│ └── main.cpp
+├── HandUnit/                  # PlatformIO project for the hand controller
+│   ├── platformio.ini
+│   └── src/
+│       └── main.cpp
 │
-├── CarUnit/ # PlatformIO project for the car (ESP32-CAM)
-│ ├── platformio.ini
-│ └── src/
-│ └── main.cpp
+├── CarUnit/                   # PlatformIO project for the car (ESP32-CAM)
+│   ├── platformio.ini
+│   └── src/
+│       └── main.cpp
 │
-├── Dashboard/ # Web dashboard for monitoring and control
-│ ├── index.html
-│ └── README.md
+├── Dashboard/                 # Web dashboard for monitoring and control
+│   ├── index.html
+│   └── README.md
 │
-├── Docs/ # Documentation
-│ ├── Interim Report.pdf
-│ ├── What-I-Learned-Summary.md
-│ └── Setup-Notes.md
+├── Docs/                      # Documentation
+│   ├── Interim Report.pdf
+│   ├── What-I-Learned-Summary.md
+│   └── Setup-Notes.md
 │
-└── README.md # This file
-
+└── README.md                  # This file
+```
 ---
 
 ## ⚙️ Hardware Setup
