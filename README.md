@@ -1,53 +1,76 @@
-![GestroDrive Car](Docs/Images/Image.jpg)
-# GestroDrive 🚗✋
+![GestroDrive Car](Docs/Images/CarV2.jpg)
 
-Gesture-Controlled Robotic Car System built with **ESP32**, **ESP32-CAM**, and **MPU6050**.  
-Developed as a capstone project by **Arth Raval** and **Vansh Patel**.  
+# GestroDrive 🚗✋  
+*A Gesture-Controlled Robotic Car with Real-Time Video & IoT Features*  
 
----
-
-## 📌 Project Overview
-GestroDrive is a robotic car that can be controlled by natural **hand gestures** using an ESP32 hand unit.  
-The system integrates:
-- **ESP-NOW** peer-to-peer communication for low-latency control  
-- **ESP32-CAM** for live MJPEG video streaming  
-- **PC-hosted web dashboard** for monitoring and manual control  
-- **Ultrasonic crash detection** with buzzer alerts  
-- **Automatic headlights** with LDR sensors  
+🎥 **[Watch the Demo Video](https://youtu.be/yabmje5PNzs)**  
 
 ---
 
-## 📂 Repository Structure
+## 📌 About the Project  
+GestroDrive is a **capstone project** that demonstrates how **human gestures** can be translated into real-time robotic car control.  
+Using **ESP32 microcontrollers**, **MPU6050 motion sensors**, and an **ESP32-CAM**, this system combines embedded programming, IoT concepts, and robotics into one seamless prototype.  
+
+The car can be controlled entirely by hand gestures, while providing **live video streaming** and built-in **safety mechanisms** such as crash detection and auto-stop.  
+
+---
+
+## 🚀 Key Features  
+- ✋ **Gesture Recognition** – Control the car with natural hand motions (Forward, Backward, Left, Right, Stop).  
+- 📷 **Live Video Feed** – ESP32-CAM streams MJPEG video for first-person driving.  
+- 🌐 **Web Dashboard** – Browser-based interface for manual control and telemetry.  
+- 🚨 **Crash Detection** – Ultrasonic sensor stops the car if an obstacle is detected.  
+- 💡 **Smart Lighting** – Auto headlights and taillights using LDR sensors.  
+- 🔊 **Safety Alerts** – Buzzer sounds on crash detection or system faults.  
+
+---
+
+## 🛠️ Tech Stack  
+
+### Hardware  
+- **Hand Unit**: ESP32-DevKitC, MPU6050, SSD1306 OLED, 3.7V LiPo + TP4056 + MT3608  
+- **Car Unit**: ESP32-CAM (OV2640, WROVER PSRAM), L298N Motor Driver, PCF8574 I/O Expander  
+- **Peripherals**: HC-SR04 Ultrasonic, LDRs + LEDs, Buzzer, 7.4V LiPo + LM2596 Buck Converter  
+
+### Software  
+- **Frameworks**: Arduino (via PlatformIO)  
+- **Networking**: ESP-NOW (gesture commands), Wi-Fi (video stream, dashboard)  
+- **Protocols & Tools**: mDNS for local access (`cam.local`), AsyncWebServer, I2C for sensors  
+
+---
+
+## 📂 Repository Structure  
 
 ```text
 GestroDrive/
 │
-├── HandUnit/                  # PlatformIO project for the hand controller
+├── Car-Code/                  # ESP32-CAM firmware
 │   ├── platformio.ini
 │   └── src/
 │       └── main.cpp
 │
-├── CarUnit/                   # PlatformIO project for the car (ESP32-CAM)
+├── Hand-Code/                 # ESP32 Hand Controller firmware
 │   ├── platformio.ini
 │   └── src/
 │       └── main.cpp
 │
-├── Dashboard/                 # Web dashboard for monitoring and control
+├── Dashboard/                 # Web dashboard for control & telemetry
 │   ├── index.html
 │   └── README.md
 │
-├── Docs/                      # Documentation
+├── Docs/                      # Documentation & media
 │   ├── Report.pdf
 │   ├── What-I-Learned-Summary.md
 │   ├── Setup-Notes.md
-│   └── Images/                # Project photos
+│   └── Images/
 │       ├── Car.jpg
 │       ├── CarV2.jpg
 │       ├── HandUnit.jpg
 │       ├── HandUnitV2.jpg
 │       └── Image.jpg
 │
-└── README.md                  # This file
+└── README.md                  # Project overview (this file)
+
 ```
 ---
 
