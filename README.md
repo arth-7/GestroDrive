@@ -1,4 +1,4 @@
-![GestroDrive Car](Docs/Images/CarV2.jpg)
+![GestroDrive Car](Docs/Images/Image.jpg)
 
 # GestroDrive 🚗✋  
 *A Gesture-Controlled Robotic Car with Real-Time Video & IoT Features*  
